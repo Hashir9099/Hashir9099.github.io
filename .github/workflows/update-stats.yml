@@ -1,0 +1,32 @@
+name: Update GitHub stats images
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # once a day, 06:00 UTC
+  workflow_dispatch:        # lets you trigger it manually too
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch stats images
+        run: |
+          mkdir -p assets
+          curl -sL "https://github-readme-stats.vercel.app/api?username=Hashir9099&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&icon_color=B368F7&text_color=ABA6CE" -o assets/github-stats.svg
+          curl -sL "https://github-readme-stats.vercel.app/api/top-langs/?username=Hashir9099&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&text_color=ABA6CE" -o assets/top-langs.svg
+          curl -sL "https://streak-stats.demolab.com/?user=Hashir9099&theme=transparent&hide_border=true&background=00000000&ring=7C6CF6&fire=B368F7&currStreakLabel=EEECFB&sideLabels=ABA6CE&sideNums=EEECFB&currStreakNum=EEECFB&dates=6E6893" -o assets/streak-stats.svg
+          curl -sL "https://github-readme-activity-graph.vercel.app/graph?username=Hashir9099&theme=react-dark&hide_border=true&bg_color=00000000&color=ABA6CE&line=7C6CF6&point=B368F7" -o assets/activity-graph.svg
+          curl -sL "https://github-profile-trophy.vercel.app/?username=Hashir9099&theme=discord&no-frame=true&column=4&margin-w=8&margin-h=8" -o assets/trophies.svg
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --staged --quiet || git commit -m "chore: refresh GitHub stats images"
+          git push
