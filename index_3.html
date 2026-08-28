@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hashir Hussain — AI/ML Engineer &amp; Oracle APEX Developer</title>
+<meta name="description" content="Hashir Hussain — AI/ML engineer and Oracle APEX / PL-SQL developer. CTR opportunity-scoring on a 79M-row search warehouse, explainable deep learning diagnostics, and enterprise ERP systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A12;
+    --panel:#13131F;
+    --panel-2:#181827;
+    --line:#26263A;
+    --line-soft:#1C1C2B;
+    --ink:#EEECFB;
+    --ink-dim:#ABA6CE;
+    --ink-faint:#6E6893;
+    --indigo:#7C6CF6;
+    --indigo-bright:#9F8FFF;
+    --violet:#B368F7;
+    --blue:#5B7CFA;
+    --max:980px;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; font-size:17px; line-height:1.65;
+    -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(ellipse 700px 520px at 12% -8%, rgba(124,108,246,.22), transparent 60%),
+      radial-gradient(ellipse 620px 520px at 88% 6%, rgba(179,104,247,.16), transparent 60%),
+      radial-gradient(ellipse 820px 620px at 50% 105%, rgba(91,124,250,.14), transparent 60%);
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:-1;
+    background-image:
+      linear-gradient(rgba(124,108,246,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,108,246,.05) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black, transparent 78%);
+            mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black, transparent 78%);
+  }
+  @keyframes drift{ from{transform:translateY(0) scale(1);} to{transform:translateY(-26px) scale(1.05);} }
+  @media (prefers-reduced-motion: reduce){ body::before{animation:none;} }
+
+  a{color:var(--indigo-bright); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible, summary:focus-visible{outline:2px solid var(--indigo-bright); outline-offset:3px; border-radius:3px;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:600; line-height:1.15; margin:0 0 .5em; color:var(--ink); letter-spacing:-.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo-bright); margin-bottom:10px;}
+  .grad-text{background:linear-gradient(90deg,var(--indigo-bright),var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+
+  /* nav */
+  nav{position:sticky; top:0; background:rgba(10,10,18,.72); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); z-index:20;}
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; padding:16px 24px;}
+  nav .name{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px; color:var(--ink);}
+  nav .name .brk{color:var(--indigo-bright);}
+  nav .links{display:flex; gap:24px; font-size:14px;}
+  nav .links a{color:var(--ink-dim);}
+  nav .links a:hover{color:var(--ink); text-decoration:none;}
+  @media (max-width:600px){ nav .links{gap:12px; font-size:12.5px;} }
+
+  /* hero */
+  .hero{padding:70px 0 56px; border-bottom:1px solid var(--line-soft); position:relative;}
+  .hero-badges{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+  .hero-badges img{height:26px; display:block;}
+  .hero h1{font-size:clamp(30px,4.6vw,46px); max-width:18ch; font-weight:700;}
+  .hero p.lede{color:var(--ink-dim); font-size:17.5px; max-width:62ch; margin-top:14px;}
+  .typing-wrap{margin:20px 0 8px;}
+  .typing-wrap img{max-width:100%; height:auto; display:block;}
+  .cta-row{display:flex; gap:12px; margin-top:28px; flex-wrap:wrap;}
+  .btn{font-family:'IBM Plex Mono',monospace; font-size:13.5px; padding:11px 20px; border-radius:7px; border:1px solid var(--line);}
+  .btn.primary{background:linear-gradient(90deg,var(--indigo),var(--violet)); color:#0A0A12; font-weight:600; border-color:transparent;}
+  .btn.primary:hover{filter:brightness(1.1); text-decoration:none;}
+  .btn.secondary{color:var(--ink); background:var(--panel);}
+  .btn.secondary:hover{background:var(--panel-2); border-color:var(--indigo); text-decoration:none;}
+  .stat-badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px;}
+  .stat-badges img{height:24px; display:block;}
+
+  section{padding:52px 0; border-bottom:1px solid var(--line-soft);}
+  section:last-of-type{border-bottom:none;}
+  section h2{font-size:24px; margin-bottom:22px;}
+
+  /* about */
+  .about-bio{color:var(--ink-dim); font-size:16.5px; max-width:70ch;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  .tag{font-family:'IBM Plex Mono',monospace; font-size:12.5px; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:6px 14px; color:var(--ink-dim);}
+
+  /* stack */
+  .stack-group{margin-bottom:22px;}
+  .stack-group .glabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px;}
+  .stack-badges{display:flex; flex-wrap:wrap; gap:6px;}
+  .stack-badges img{height:28px; display:block;}
+
+  /* expertise table */
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--panel);}
+  table{border-collapse:collapse; width:100%; min-width:560px; font-size:14.5px;}
+  th,td{text-align:left; padding:13px 18px; border-bottom:1px solid var(--line-soft);}
+  th{font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--indigo-bright); background:var(--panel-2);}
+  td{color:var(--ink-dim);}
+  tr:last-child td{border-bottom:none;}
+  td.domain{color:var(--ink); font-weight:500;}
+  .lvl{font-family:'IBM Plex Mono',monospace; font-size:12px; padding:3px 10px; border-radius:20px; display:inline-block;}
+  .lvl.applied{background:rgba(124,108,246,.15); color:var(--indigo-bright);}
+  .lvl.internship{background:rgba(179,104,247,.15); color:var(--violet);}
+  .lvl.coursework{background:rgba(91,124,250,.15); color:var(--blue);}
+
+  /* projects */
+  .project{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:16px; overflow:hidden;}
+  .project.featured{border-color:var(--indigo);}
+  .project summary{list-style:none; cursor:pointer; padding:22px 24px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;}
+  .project summary::-webkit-details-marker{display:none;}
+  .project summary .stitle{display:flex; flex-direction:column; gap:6px;}
+  .project summary .stitle .eyebrow{margin:0;}
+  .project summary h3{margin:0; font-size:19px;}
+  .project summary .chev{font-family:'IBM Plex Mono',monospace; color:var(--ink-faint); transition:transform .2s ease; flex-shrink:0;}
+  .project[open] summary .chev{transform:rotate(90deg); color:var(--indigo-bright);}
+  .project-body{padding:0 24px 24px;}
+  .project-body p{color:var(--ink-dim); margin:0 0 16px; font-size:15.5px;}
+  .plinks{font-family:'IBM Plex Mono',monospace; font-size:13px; display:flex; gap:14px; margin-bottom:16px;}
+  .mini-table{width:100%; font-size:13.5px; margin-bottom:16px; border:1px solid var(--line-soft); border-radius:8px; overflow:hidden;}
+  .mini-table th,.mini-table td{padding:9px 14px;}
+  .stack{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-family:'IBM Plex Mono',monospace; font-size:12px; background:var(--bg); border:1px solid var(--line); border-radius:20px; padding:4px 12px; color:var(--ink-dim);}
+
+  /* experience */
+  .exp-item{display:grid; grid-template-columns:150px 1fr; gap:20px; padding:22px 0; border-bottom:1px solid var(--line-soft);}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-item .when{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-faint);}
+  .exp-item h3{font-size:17.5px; margin-bottom:4px;}
+  .exp-item .role{font-size:13.5px; color:var(--indigo-bright); font-family:'IBM Plex Mono',monospace; margin-bottom:10px;}
+  .exp-item ul{margin:0; padding-left:18px; color:var(--ink-dim); font-size:15px;}
+  .exp-item li{margin-bottom:6px;}
+  @media (max-width:600px){ .exp-item{grid-template-columns:1fr;} }
+
+  /* empty state */
+  .empty-state{background:var(--panel); border:1px dashed var(--line); border-radius:var(--radius); padding:26px; text-align:center;}
+  .empty-state p{color:var(--ink-faint); font-size:14.5px; margin:0; font-family:'IBM Plex Mono',monospace;}
+
+  /* analytics */
+  .analytics-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .analytics-grid .full{grid-column:1 / -1;}
+  .analytics-grid img{max-width:100%; width:100%; display:block; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);}
+  .note{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint); margin-top:14px;}
+  @media (max-width:700px){ .analytics-grid{grid-template-columns:1fr;} }
+
+  /* yaml block */
+  .yaml-block{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px 26px; overflow-x:auto;}
+  .yaml-block pre{margin:0; font-family:'IBM Plex Mono',monospace; font-size:14px; line-height:1.9;}
+  .yk{color:var(--violet);} .ys{color:var(--ink-dim);} .yc{color:var(--ink-faint);}
+
+  /* footer */
+  footer{padding:0 0 0;}
+  .connect{padding:52px 0 30px;}
+  .connect-badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .connect-badges img{height:32px; display:block;}
+  .motto{font-family:'Space Grotesk',sans-serif; font-weight:300; font-style:italic; color:var(--ink-dim); font-size:16px; margin-top:26px; max-width:60ch;}
+  .cap-footer img{width:100%; display:block;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="name"><span class="brk">&lt;</span>Hashir Hussain<span class="brk">/&gt;</span></div>
+    <div class="links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badges">
+      <img src="https://img.shields.io/badge/AI%2FML_ENGINEER-7C6CF6?style=for-the-badge&logoColor=white" alt="AI/ML Engineer">
+      <img src="https://img.shields.io/badge/ORACLE_APEX_%C2%B7_PL%2FSQL-B368F7?style=for-the-badge&logoColor=white" alt="Oracle APEX / PL-SQL">
+      <img src="https://img.shields.io/badge/LAHORE%2C_PAKISTAN-5B7CFA?style=for-the-badge&logo=mapbox&logoColor=white" alt="Lahore, Pakistan">
+    </div>
+    <h1>I build ML pipelines, enterprise systems, and the occasional <span class="grad-text">public research paper</span>.</h1>
+    <p class="lede">
+      CS graduate (Lahore Garrison University) working across AI/ML engineering, Oracle APEX / ERP
+      development, and full-stack web. Recent work: a CTR opportunity-scoring pipeline on a
+      79M-row search warehouse, deployed as a public research paper — plus deep learning
+      diagnostics, an ongoing Oracle APEX internship, and n8n automation builds.
+    </p>
+    <div class="typing-wrap">
+      <img src="https://readme-typing-svg.demolab.com/?font=IBM+Plex+Mono&size=18&pause=1000&color=9F8FFF&center=false&vCenter=true&width=560&height=30&lines=AI%2FML+Engineer;Oracle+APEX+%2F+PL-SQL+Developer;Querying+79M+rows+over+remote+Parquet;Full-Stack+Web+Developer" alt="Rotating role typing animation">
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">See my work</a>
+      <a class="btn secondary" href="https://github.com/Hashir9099" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn secondary" href="https://www.linkedin.com/in/hashir-hussain-b76053297" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn secondary" href="mailto:iamhashir9099@gmail.com">Email</a>
+    </div>
+    <div class="stat-badges">
+      <img src="https://komarev.com/ghpvc/?username=Hashir9099&color=7c6cf6&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views">
+      <img src="https://img.shields.io/github/followers/Hashir9099?label=FOLLOWERS&style=for-the-badge&color=b368f7&logo=github&logoColor=white" alt="GitHub followers">
+    </div>
+  </div>
+</div>
+
+<main>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About</div>
+    <h2>Who I am</h2>
+    <p class="about-bio">
+      I'm a CS graduate from Lahore Garrison University working at the intersection of applied
+      machine learning and enterprise software. On the ML side, that's meant querying a
+      79-million-row search warehouse directly over remote Parquet with DuckDB, catching a
+      data-leakage bug before it shipped, and reporting an honest negative result instead of a
+      flattering one. On the enterprise side, it's meant building Oracle APEX / PL-SQL systems
+      that run real ERP workflows for 250+ employees. I try to treat "honest validation" as a
+      practice, not a slogan — leakage checks, client-grouped splits, and documenting anomalies
+      instead of smoothing them away.
+    </p>
+    <div class="tag-row">
+      <span class="tag">Open to: AI/ML Engineering roles</span>
+      <span class="tag">Open to: Oracle APEX / PL-SQL roles</span>
+      <span class="tag">Open to: Full-stack web roles</span>
+      <span class="tag">Lahore &amp; remote</span>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="eyebrow">Toolkit</div>
+    <h2>Tech Stack</h2>
+
+    <div class="stack-group">
+      <div class="glabel">AI / ML</div>
+      <div class="stack-badges">
+        <img src="https://img.shields.io/badge/Python-7C6CF6?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+        <img src="https://img.shields.io/badge/PyTorch-B368F7?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch">
+        <img src="https://img.shields.io/badge/TensorFlow-5B7CFA?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow">
+        <img src="https://img.shields.io/badge/scikit--learn-7C6CF6?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn">
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <div class="glabel">Data &amp; Warehousing</div>
+      <div class="stack-badges">
+        <img src="https://img.shields.io/badge/DuckDB-B368F7?style=for-the-badge&logo=duckdb&logoColor=white" alt="DuckDB">
+        <img src="https://img.shields.io/badge/SQL-5B7CFA?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
+        <img src="https://img.shields.io/badge/pandas-7C6CF6?style=for-the-badge&logo=pandas&logoColor=white" alt="pandas">
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <div class="glabel">Oracle &amp; Enterprise</div>
+      <div class="stack-badges">
+        <img src="https://img.shields.io/badge/Oracle_APEX-B368F7?style=for-the-badge&logo=oracle&logoColor=white" alt="Oracle APEX">
+        <img src="https://img.shields.io/badge/PL%2FSQL-7C6CF6?style=for-the-badge&logo=oracle&logoColor=white" alt="PL/SQL">
+        <img src="https://img.shields.io/badge/ORDS-5B7CFA?style=for-the-badge&logoColor=white" alt="ORDS">
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <div class="glabel">Web Development</div>
+      <div class="stack-badges">
+        <img src="https://img.shields.io/badge/JavaScript-7C6CF6?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
+        <img src="https://img.shields.io/badge/React-B368F7?style=for-the-badge&logo=react&logoColor=white" alt="React">
+        <img src="https://img.shields.io/badge/HTML5-5B7CFA?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+        <img src="https://img.shields.io/badge/FastAPI-7C6CF6?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <div class="glabel">Automation</div>
+      <div class="stack-badges">
+        <img src="https://img.shields.io/badge/n8n-B368F7?style=for-the-badge&logo=n8n&logoColor=white" alt="n8n">
+        <img src="https://img.shields.io/badge/AI_Agents-5B7CFA?style=for-the-badge&logoColor=white" alt="AI Agents">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="wrap">
+    <div class="eyebrow">Depth</div>
+    <h2>AI / ML Expertise</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Domain</th><th>Level</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="domain">Classical ML &amp; validation</td>
+            <td><span class="lvl internship">Internship</span></td>
+            <td>LogReg vs. Random Forest precision@K comparison on a leakage-fixed engagement-decline model; client-grouped splits over naive splits</td>
+          </tr>
+          <tr>
+            <td class="domain">Computer vision (CNN / ViT)</td>
+            <td><span class="lvl applied">Applied</span></td>
+            <td>ConvNeXt-Small + Grad-CAM for Alzheimer's staging (93% 4-class accuracy); CNN + Grad-CAM chest X-ray classifier</td>
+          </tr>
+          <tr>
+            <td class="domain">Data engineering</td>
+            <td><span class="lvl internship">Internship</span></td>
+            <td>Queried a 79M-row search warehouse directly over remote Parquet with DuckDB — no bulk download</td>
+          </tr>
+          <tr>
+            <td class="domain">Time-series forecasting (LSTM)</td>
+            <td><span class="lvl coursework">Coursework</span></td>
+            <td>LSTM forecasting coursework at Lahore Garrison University</td>
+          </tr>
+          <tr>
+            <td class="domain">Transformers (ViT / Swin)</td>
+            <td><span class="lvl coursework">Coursework</span></td>
+            <td>ViT / Swin Transformer coursework alongside deep learning FYP work</td>
+          </tr>
+          <tr>
+            <td class="domain">AI agents &amp; automation</td>
+            <td><span class="lvl applied">Applied</span></td>
+            <td>n8n LLM-agent workflow writing new-customer data across 12–13 department tables in one run</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Selected work</div>
+    <h2>Featured Projects</h2>
+
+    <details class="project featured" open>
+      <summary>
+        <div class="stitle">
+          <div class="eyebrow">Featured — ShopSense AI</div>
+          <h3>At-Risk Review Detection</h3>
+        </div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <p>
+          Built and deployed a system to flag at-risk customer reviews from Brazilian
+          e-commerce data (110K+ orders, Portuguese review text), comparing three modeling
+          approaches head-to-head: Random Forest on structured order data (91% accuracy, 85%
+          precision), an LSTM trained from scratch, and a pretrained multilingual transformer.
+          Shipped a public web app combining an RF/transformer ensemble with batch CSV triage,
+          keyword explainability, and a live dashboard.
+        </p>
+        <table class="mini-table table-wrap">
+          <tbody>
+            <tr><th>Data</th><td>Brazilian e-commerce orders — 110K+ rows, Portuguese review text</td></tr>
+            <tr><th>Approaches compared</th><td>Random Forest vs. LSTM (from scratch) vs. pretrained multilingual transformer</td></tr>
+            <tr><th>Best result</th><td>Random Forest — 91% accuracy, 85% precision</td></tr>
+            <tr><th>Shipped</th><td>Public web app — RF/transformer ensemble, batch CSV triage, keyword explainability, live dashboard</td></tr>
+          </tbody>
+        </table>
+        <div class="stack">
+          <span class="chip">scikit-learn</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">Hugging Face Transformers</span>
+          <span class="chip">Gradio</span>
+          <span class="chip">SQLite</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="project">
+      <summary>
+        <div class="stitle">
+          <div class="eyebrow">FlyRank ML Internship Capstone</div>
+          <h3>CTR / Engagement Opportunity Scoring</h3>
+        </div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <div class="plinks">
+          <a href="https://hashir9099.github.io/flyrank-ml/" target="_blank" rel="noopener">Paper →</a>
+          <a href="https://github.com/Hashir9099/flyrank-ml" target="_blank" rel="noopener">Repo →</a>
+        </div>
+        <p>
+          Built and deployed an empirical CTR-by-position benchmark and opportunity-scoring
+          pipeline on a 79M-row real search-performance warehouse, querying directly via DuckDB
+          over remote Parquet. Identified and documented a real, large-sample anomaly in the
+          benchmark curve rather than smoothing it away, caught and fixed an impression-weighting
+          bug before shipping, and separately validated a decline-prediction model with a
+          client-grouped split — reporting an honest negative result instead of a misleadingly
+          good naive-split number. On the fixed data, logistic regression beat random forest at
+          every K for precision@K.
+        </p>
+        <table class="mini-table table-wrap">
+          <tbody>
+            <tr><th>Scale</th><td>79M-row search-performance warehouse</td></tr>
+            <tr><th>Method</th><td>DuckDB over remote Parquet, no bulk download</td></tr>
+            <tr><th>Validation</th><td>Leakage check + client-grouped split, honest negative result reported</td></tr>
+          </tbody>
+        </table>
+        <div class="stack">
+          <span class="chip">DuckDB</span>
+          <span class="chip">pandas / scikit-learn</span>
+          <span class="chip">Hugging Face datasets</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">Leakage validation</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="project">
+      <summary>
+        <div class="stitle"><h3>NeuroScan — Alzheimer's Detection (Final Year Project)</h3></div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <p>
+          ConvNeXt-Small classifier for Alzheimer's stage detection on the OASIS brain MRI
+          dataset (93% four-class accuracy), with Grad-CAM explainability and a FastAPI/JS
+          frontend for interpretable predictions.
+        </p>
+        <div class="stack">
+          <span class="chip">ConvNeXt</span>
+          <span class="chip">Grad-CAM</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Medical imaging</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="project">
+      <summary>
+        <div class="stitle"><h3>PulmoScan — Chest X-Ray Classifier</h3></div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <p>
+          Five-category chest X-ray disease classifier with a React frontend and Grad-CAM
+          heatmap viewer for visual model interpretability.
+        </p>
+        <div class="stack">
+          <span class="chip">CNN</span>
+          <span class="chip">React</span>
+          <span class="chip">Grad-CAM</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="project">
+      <summary>
+        <div class="stitle"><h3>AI Agent Automation Workflow (n8n)</h3></div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <p>
+          Adapted n8n's AI-agent automation pattern — trigger → LLM summary agent → source
+          feeds → notification output — into a customized workflow. Built a "Customer
+          Onboarding" automation that takes a manual trigger, conditionally branches based on
+          existing records, then writes the new customer's data across 12–13 department-level
+          tables in a single run, replacing what would otherwise be repetitive manual entry
+          across separate systems. Tested end-to-end with demo data; the workflow executes
+          successfully across the full node chain.
+        </p>
+        <div class="stack">
+          <span class="chip">n8n</span>
+          <span class="chip">AI Agents</span>
+          <span class="chip">Workflow automation</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="project">
+      <summary>
+        <div class="stitle"><h3>The Knot Spot — Crochet E-Commerce</h3></div>
+        <span class="chev">▸</span>
+      </summary>
+      <div class="project-body">
+        <p>
+          Web storefront for a crochet accessories small business, with multi-file JavaScript
+          cart logic and product management.
+        </p>
+        <div class="stack">
+          <span class="chip">JavaScript</span>
+          <span class="chip">HTML/CSS</span>
+          <span class="chip">E-commerce</span>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Where I've worked</div>
+    <h2>Experience</h2>
+
+    <div class="exp-item">
+      <div class="when">2026</div>
+      <div>
+        <h3>FlyRank</h3>
+        <div class="role">ML Intern — Search Intelligence Track</div>
+        <ul>
+          <li>Self-paced ML internship on real 79M-row search warehouse data</li>
+          <li>Built the CTR/Engagement Opportunity Scoring capstone (see Projects)</li>
+          <li>Data contracts, leakage validation, and a deployed public research paper</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="when">2025–Present</div>
+      <div>
+        <h3>Nishat Dyeing &amp; Finishing</h3>
+        <div class="role">IT Intern — Oracle APEX / SQL &amp; PL-SQL Developer</div>
+        <ul>
+          <li>ERP system development across 5 modules covering 250+ employees, 700+ records</li>
+          <li>Oracle APEX application development with ORDS-based deployment</li>
+          <li>Employee data management systems on Oracle DB</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="when">May 2025</div>
+      <div>
+        <h3>Lahore Garrison University</h3>
+        <div class="role">B.S. Computer Science</div>
+        <ul>
+          <li>Final Year Project: NeuroScan (Alzheimer's detection, Grad-CAM explainability)</li>
+          <li>Coursework: deep learning, ViT/Swin Transformers, LSTM forecasting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="eyebrow">Recognition</div>
+    <h2>Achievements &amp; Certifications</h2>
+    <div class="empty-state">
+      <p>No certifications or achievements listed yet — send me the real ones (AWS, Oracle, NPTEL, course completions, awards, whatever applies) and I'll add them here.</p>
+    </div>
+  </div>
+</section>
+
+<section id="analytics">
+  <div class="wrap">
+    <div class="eyebrow">Live from GitHub</div>
+    <h2>GitHub Stats</h2>
+    <div class="analytics-grid">
+      <img class="full" src="assets/github-stats.svg" alt="Hashir9099's GitHub stats" loading="lazy">
+      <img src="assets/top-langs.svg" alt="Most used languages" loading="lazy">
+      <img src="assets/streak-stats.svg" alt="GitHub streak" loading="lazy">
+      <img class="full" src="assets/activity-graph.svg" alt="Contribution activity graph" loading="lazy">
+      <img class="full" src="assets/trophies.svg" alt="GitHub trophies" loading="lazy">
+    </div>
+    <p class="note">Refreshed daily by a GitHub Action and served as static files from this repo — no live third-party calls on page load, so there's nothing to rate-limit or block.</p>
+  </div>
+</section>
+
+<section id="focus">
+  <div class="wrap">
+    <div class="eyebrow">Right now</div>
+    <h2>Current Focus</h2>
+    <div class="yaml-block">
+<pre><span class="yk">building:</span> <span class="ys">"ShopSense AI — full-stack e-commerce AI platform (classical ML, deep learning, NLP/transformers, LLM/RAG/agents, MLOps)"</span>
+<span class="yk">learning:</span>  <span class="ys">"Vision Transformers, LSTM forecasting, agentic LLM workflows"</span>
+<span class="yk">exploring:</span> <span class="ys">"n8n AI-agent automation patterns"</span>
+<span class="yk">open_to:</span>   <span class="ys">"AI/ML engineering & Oracle APEX / PL-SQL roles — Lahore & remote"</span></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap connect">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Let's talk</h2>
+    <p class="about-bio">Open to AI/ML engineering and Oracle APEX development roles in Lahore and remote.</p>
+    <div class="connect-badges">
+      <a href="mailto:iamhashir9099@gmail.com"><img src="https://img.shields.io/badge/Gmail-7C6CF6?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+      <a href="https://www.linkedin.com/in/hashir-hussain-b76053297" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/LinkedIn-B368F7?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+      <a href="https://github.com/Hashir9099" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GitHub-5B7CFA?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+    </div>
+    <p class="motto">"Ship the honest result, not the flattering one."</p>
+  </div>
+  <div class="cap-footer">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:5B7CFA,50:7C6CF6,100:B368F7&height=120&section=footer" alt="">
+  </div>
+</footer>
+
+</body>
+</html>
