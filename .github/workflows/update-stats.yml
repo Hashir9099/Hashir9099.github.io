@@ -14,14 +14,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch stats images
+      - name: Fetch stats images (only replace files that look valid)
         run: |
           mkdir -p assets
-          curl -sL "https://github-readme-stats.vercel.app/api?username=Hashir9099&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&icon_color=B368F7&text_color=ABA6CE" -o assets/github-stats.svg
-          curl -sL "https://github-readme-stats.vercel.app/api/top-langs/?username=Hashir9099&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&text_color=ABA6CE" -o assets/top-langs.svg
-          curl -sL "https://streak-stats.demolab.com/?user=Hashir9099&theme=transparent&hide_border=true&background=00000000&ring=7C6CF6&fire=B368F7&currStreakLabel=EEECFB&sideLabels=ABA6CE&sideNums=EEECFB&currStreakNum=EEECFB&dates=6E6893" -o assets/streak-stats.svg
-          curl -sL "https://github-readme-activity-graph.vercel.app/graph?username=Hashir9099&theme=react-dark&hide_border=true&bg_color=00000000&color=ABA6CE&line=7C6CF6&point=B368F7" -o assets/activity-graph.svg
-          curl -sL "https://github-profile-trophy.vercel.app/?username=Hashir9099&theme=discord&no-frame=true&column=4&margin-w=8&margin-h=8" -o assets/trophies.svg
+          fetch() {
+            url="$1"
+            out="$2"
+            tmp="$(mktemp)"
+            curl -sL "$url" -o "$tmp"
+            if [ -s "$tmp" ] && ! grep -qiE "failed to retrieve|rate limit|something went wrong|error occurred" "$tmp"; then
+              cp "$tmp" "assets/$out"
+              echo "updated $out"
+            else
+              echo "skipped $out (fetch looked broken, keeping the existing file)"
+            fi
+            rm -f "$tmp"
+          }
+
+          fetch "https://github-readme-stats.vercel.app/api?username=Hashir9099&show_icons=true&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&icon_color=B368F7&text_color=ABA6CE" "github-stats.svg"
+          fetch "https://github-readme-stats.vercel.app/api/top-langs/?username=Hashir9099&layout=compact&theme=transparent&hide_border=true&bg_color=00000000&title_color=9F8FFF&text_color=ABA6CE" "top-langs.svg"
+          fetch "https://streak-stats.demolab.com/?user=Hashir9099&theme=transparent&hide_border=true&background=00000000&ring=7C6CF6&fire=B368F7&currStreakLabel=EEECFB&sideLabels=ABA6CE&sideNums=EEECFB&currStreakNum=EEECFB&dates=6E6893" "streak-stats.svg"
+          fetch "https://github-readme-activity-graph.vercel.app/graph?username=Hashir9099&theme=react-dark&hide_border=true&bg_color=00000000&color=ABA6CE&line=7C6CF6&point=B368F7" "activity-graph.svg"
+          fetch "https://github-profile-trophy.vercel.app/?username=Hashir9099&theme=discord&no-frame=true&column=4&margin-w=8&margin-h=8" "trophies.svg"
 
       - name: Commit changes
         run: |
