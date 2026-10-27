@@ -1,5 +1,0 @@
-<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0.5" y="0.5" width="699" height="199" rx="12" fill="#13131F" stroke="#26263A"/>
-  <text x="24" y="95" font-family="IBM Plex Mono, monospace" font-size="13" fill="#ABA6CE">Contribution activity graph — temporarily unavailable</text>
-  <text x="24" y="118" font-family="IBM Plex Mono, monospace" font-size="12" fill="#6E6893">Upstream widget service is down; this refreshes automatically once it's back.</text>
-</svg>
