@@ -22,7 +22,10 @@ jobs:
             out="$2"
             tmp="$(mktemp)"
             curl -sL "$url" -o "$tmp"
-            first_char="$(head -c 1 "$tmp" 2>/dev/null)"
+            # Strip ALL whitespace before checking the first character — some of these
+            # services pretty-print their SVG with leading indentation/newlines, so
+            # checking the raw first byte gave false negatives on perfectly valid SVGs.
+            first_char="$(tr -d '[:space:]' < "$tmp" | head -c 1)"
             # Two independent guards: (1) a real SVG/XML response must start with "<" —
             # this catches ANY plain-text error page, known or not, not just the phrases
             # below; (2) an explicit phrase blocklist for text that happens to start with
