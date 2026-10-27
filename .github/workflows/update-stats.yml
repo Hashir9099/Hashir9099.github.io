@@ -22,11 +22,16 @@ jobs:
             out="$2"
             tmp="$(mktemp)"
             curl -sL "$url" -o "$tmp"
-            if [ -s "$tmp" ] && ! grep -qiE "failed to retrieve|rate limit|something went wrong|error occurred" "$tmp"; then
+            first_char="$(head -c 1 "$tmp" 2>/dev/null)"
+            # Two independent guards: (1) a real SVG/XML response must start with "<" —
+            # this catches ANY plain-text error page, known or not, not just the phrases
+            # below; (2) an explicit phrase blocklist for text that happens to start with
+            # "<" (e.g. an HTML error page) or just to keep the failure reason in the logs.
+            if [ -s "$tmp" ] && [ "$first_char" = "<" ] && ! grep -qiE "failed to retrieve|rate limit|something went wrong|error occurred|payment required|deployment_disabled|deployment has been disabled|application error" "$tmp"; then
               cp "$tmp" "assets/$out"
               echo "updated $out"
             else
-              echo "skipped $out (fetch looked broken, keeping the existing file)"
+              echo "skipped $out (fetch looked broken: $(head -c 80 "$tmp" | tr -d '\n'), keeping the existing file)"
             fi
             rm -f "$tmp"
           }
